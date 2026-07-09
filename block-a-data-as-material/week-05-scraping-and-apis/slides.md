@@ -7,6 +7,7 @@ highlighter: shiki
 transition: slide-left
 mdc: true
 colorSchema: light
+routerMode: hash
 ---
 
 # Scraping & APIs
