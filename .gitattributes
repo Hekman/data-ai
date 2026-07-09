@@ -1,2 +1,7 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+# Notebooks and data as text with LF
+*.ipynb text eol=lf
+*.md    text eol=lf
+*.csv   text eol=lf

@@ -1,0 +1,17 @@
+{
+  "name": "data-ai-course",
+  "type": "module",
+  "private": true,
+  "description": "Data & AI track — Master Data-driven Design (HU). One shared Slidev install; each week has its own slides.md deck.",
+  "scripts": {
+    "dev": "slidev",
+    "build": "slidev build",
+    "export": "slidev export",
+    "build:site": "node scripts/build-slides.mjs"
+  },
+  "dependencies": {
+    "@slidev/cli": "^52.0.0",
+    "@slidev/theme-default": "latest",
+    "@slidev/theme-seriph": "latest"
+  }
+}

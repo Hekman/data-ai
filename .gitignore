@@ -1,0 +1,29 @@
+# --- Node / Slidev ---
+node_modules/
+dist/
+.slidev/
+*.log
+
+# --- Solutions (worked answers stay out of the student-facing repo) ---
+# Any folder named "solutions" and any *.solution.* file is never committed.
+**/solutions/
+*.solution.ipynb
+*.solution.py
+
+# --- Jupyter / Python ---
+.ipynb_checkpoints/
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# --- OS / editor ---
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# --- Large / raw data (commit only small curated files) ---
+data/**/raw/
+*.zip
+*.parquet
