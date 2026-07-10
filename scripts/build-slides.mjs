@@ -59,6 +59,23 @@ function weekNumber(week) {
   return m ? m[1] : "";
 }
 
+// --- SPA-on-GitHub-Pages fallback -------------------------------------------
+// GitHub Pages can't serve deep SPA routes (e.g. /deck/2) and has no rewrite
+// support, so a hard refresh / direct link 404s. We use the standard
+// spa-github-pages trick: a root 404.html rewrites the path into a ?/-query and
+// redirects to the deck index, and a decode snippet in each deck's index.html
+// restores the real path before Slidev's (history-mode) router boots.
+// Decks live at <repo>/<block>/<week>/ -> keep 3 path segments.
+const KEEP = 3;
+const DECODE = `<script>(function(l){if(l.search[1]==='/'){var d=l.search.slice(1).split('&').map(function(s){return s.replace(/~and~/g,'&')}).join('?');window.history.replaceState(null,null,l.pathname.slice(0,-1)+d+l.hash)}}(window.location))</script>`;
+const SPA_404 = `<!doctype html><html><head><meta charset="utf-8"><title>Redirecting…</title><script>
+var keep=${KEEP},l=window.location;
+l.replace(l.protocol+'//'+l.hostname+(l.port?':'+l.port:'')+
+l.pathname.split('/').slice(0,1+keep).join('/')+'/?/'+
+l.pathname.slice(1).split('/').slice(keep).join('/').replace(/&/g,'~and~')+
+(l.search?'&'+l.search.slice(1).replace(/&/g,'~and~'):'')+l.hash);
+</script></head><body></body></html>`;
+
 // --- clean + build ---
 rmSync(OUT, { recursive: true, force: true });
 mkdirSync(OUT, { recursive: true });
@@ -71,6 +88,13 @@ for (const d of decks) {
     `npx slidev build "${d.deck}" --base "${base}" --out "${out}"`,
     { stdio: "inherit" }
   );
+  // inject the decode snippet as the first thing in <head>
+  const idx = join(out, "index.html");
+  let htmlDeck = readFileSync(idx, "utf8");
+  if (!htmlDeck.includes("~and~")) {
+    htmlDeck = htmlDeck.replace(/<head[^>]*>/i, (m) => m + "\n" + DECODE);
+    writeFileSync(idx, htmlDeck);
+  }
 }
 
 // --- landing page ---
@@ -123,5 +147,6 @@ ${sections}</body>
 
 writeFileSync(join(OUT, "index.html"), html);
 writeFileSync(join(OUT, ".nojekyll"), ""); // stop Pages/Jekyll from mangling asset folders
+writeFileSync(join(OUT, "404.html"), SPA_404); // SPA deep-link fallback for GitHub Pages
 
 console.log(`\n✅ Built ${decks.length} deck(s) into ${OUT}/ (base /${repoName}/). Landing page: ${OUT}/index.html`);
