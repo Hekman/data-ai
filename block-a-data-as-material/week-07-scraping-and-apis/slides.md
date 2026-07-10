@@ -1,7 +1,7 @@
 ---
 theme: default
-title: Descriptive Statistics
-info: Block A · Week 4 · Master Data-driven Design
+title: Scraping & APIs
+info: Block A · Week 7 · Master Data-driven Design
 class: text-center
 highlighter: shiki
 transition: slide-left
@@ -10,15 +10,15 @@ colorSchema: light
 routerMode: hash
 ---
 
-# Descriptive Statistics
-## Block A · Week 4
+# Scraping & APIs
+## Block A · Week 7
 
 <div class="text-sm opacity-60 tracking-widest mt-4">
-BLOCK A · WEEK 4 · MASTER DATA-DRIVEN DESIGN
+BLOCK A · WEEK 7 · MASTER DATA-DRIVEN DESIGN
 </div>
 
 <div class="abs-bl m-6 text-sm opacity-70">
-<span class="italic">This week: How do I capture a dataset in a few numbers without distorting it?</span>
+<span class="italic">This week: What do I do when the data I need has no API — how do I scrape it, and when am I allowed to?</span>
 </div>
 
 ---
@@ -27,7 +27,7 @@ layout: quote
 
 ## This week's question
 
-> How do I capture a dataset in a few numbers without distorting it?
+> What do I do when the data I need has no API — how do I scrape it, and when am I allowed to?
 
 ---
 layout: default

@@ -1,6 +1,6 @@
 ---
 theme: default
-title: Scraping & APIs
+title: Data Visualisation
 info: Block A · Week 5 · Master Data-driven Design
 class: text-center
 highlighter: shiki
@@ -10,7 +10,7 @@ colorSchema: light
 routerMode: hash
 ---
 
-# Scraping & APIs
+# Data Visualisation
 ## Block A · Week 5
 
 <div class="text-sm opacity-60 tracking-widest mt-4">
@@ -18,7 +18,7 @@ BLOCK A · WEEK 5 · MASTER DATA-DRIVEN DESIGN
 </div>
 
 <div class="abs-bl m-6 text-sm opacity-70">
-<span class="italic">This week: How do I collect my own data from the web and from APIs?</span>
+<span class="italic">This week: How do I choose the visualization that answers a question — and edit it down until the insight is unmissable?</span>
 </div>
 
 ---
@@ -27,7 +27,7 @@ layout: quote
 
 ## This week's question
 
-> How do I collect my own data from the web and from APIs?
+> How do I choose the visualization that answers a question — and edit it down until the insight is unmissable?
 
 ---
 layout: default
@@ -45,4 +45,4 @@ layout: default
 
 </v-clicks>
 
-<!-- Draft deck — build out from the Canvas page and the notebook. -->
+<!-- Draft deck — build out from the week README and the notebook. -->
