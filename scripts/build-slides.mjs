@@ -94,7 +94,11 @@ for (const d of decks) {
   // vue-router's own createHref is correct, so we collapse any doubled base at
   // the history layer. `noSlash` is this deck's base without the trailing slash.
   const noSlash = base.slice(0, -1);
-  const BASEFIX = `<script>(function(){var B=${JSON.stringify(noSlash)},D=B+B;function f(u){if(typeof u==='string'){while(u.indexOf(D)!==-1)u=u.replace(D,B)}return u}var p=history.pushState,r=history.replaceState;history.pushState=function(s,t,u){return p.call(this,s,t,f(u))};history.replaceState=function(s,t,u){return r.call(this,s,t,f(u))}})();</script>`;
+  // f() collapses a doubled base in the URL string. When we actually had to
+  // collapse, Slidev also fed the base-included path to vue-router, so the route
+  // resolved to NotFound. We fire a popstate afterwards: vue-router re-reads the
+  // (now clean) URL, strips the base correctly, and resolves the real slide.
+  const BASEFIX = `<script>(function(){var B=${JSON.stringify(noSlash)},D=B+B;function f(u){if(typeof u==='string'){while(u.indexOf(D)!==-1)u=u.replace(D,B)}return u}function w(o){return function(s,t,u){var fu=f(u),ch=fu!==u,res=o.call(this,s,t,fu);if(ch){setTimeout(function(){window.dispatchEvent(new PopStateEvent('popstate',{state:s}))},0)}return res}}history.pushState=w(history.pushState);history.replaceState=w(history.replaceState)})();</script>`;
   // inject decode (404 restore) then the base-collapse guard, before app boots
   const idx = join(out, "index.html");
   let htmlDeck = readFileSync(idx, "utf8");
