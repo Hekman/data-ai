@@ -88,11 +88,18 @@ for (const d of decks) {
     `npx slidev build "${d.deck}" --base "${base}" --out "${out}"`,
     { stdio: "inherit" }
   );
-  // inject the decode snippet as the first thing in <head>
+  // Slidev v52 has a bug with nested base paths: its slide nav reads
+  // window.location (which includes the base) and re-pushes it, so vue-router
+  // prepends the base a second time -> URL like /base/base/2 -> Slidev 404.
+  // vue-router's own createHref is correct, so we collapse any doubled base at
+  // the history layer. `noSlash` is this deck's base without the trailing slash.
+  const noSlash = base.slice(0, -1);
+  const BASEFIX = `<script>(function(){var B=${JSON.stringify(noSlash)},D=B+B;function f(u){if(typeof u==='string'){while(u.indexOf(D)!==-1)u=u.replace(D,B)}return u}var p=history.pushState,r=history.replaceState;history.pushState=function(s,t,u){return p.call(this,s,t,f(u))};history.replaceState=function(s,t,u){return r.call(this,s,t,f(u))}})();</script>`;
+  // inject decode (404 restore) then the base-collapse guard, before app boots
   const idx = join(out, "index.html");
   let htmlDeck = readFileSync(idx, "utf8");
   if (!htmlDeck.includes("~and~")) {
-    htmlDeck = htmlDeck.replace(/<head[^>]*>/i, (m) => m + "\n" + DECODE);
+    htmlDeck = htmlDeck.replace(/<head[^>]*>/i, (m) => m + "\n" + DECODE + "\n" + BASEFIX);
     writeFileSync(idx, htmlDeck);
   }
 }
