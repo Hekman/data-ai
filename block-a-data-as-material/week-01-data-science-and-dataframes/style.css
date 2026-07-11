@@ -1,0 +1,250 @@
+/* ============================================================
+   Data & AI — slide theme
+   Companion styling to the book "Data & AI for Designers
+   and Journalists" (mkdocs-material editorial theme).
+   Elevated-editorial variant: same palette & type, but with
+   full-bleed ink cover / section slides for presentation impact.
+   ============================================================ */
+
+/* ---------- Brand palette (mirrors the book) ---------- */
+:root {
+  --ink:       #16233f;   /* ink navy */
+  --ink-2:     #0e1830;   /* deeper navy for gradients */
+  --accent:    #23477e;   /* slate-blue accent */
+  --accent-2:  #2f5c9e;
+  --rule:      #dfe3ec;   /* light hairline */
+  --paper:     #fbfbfc;   /* near-white page */
+  --body-fg:   #2a3346;
+  --muted:     #55617a;
+
+  /* the book's four sidebar accents */
+  --c-origins:  #8a6d2b;  /* sepia / gold  */
+  --c-practice: #216a63;  /* teal          */
+  --c-critical: #a02a22;  /* crimson       */
+  --c-further:  #33518c;  /* indigo        */
+  --c-case:     #7a4a86;  /* purple        */
+
+  --slidev-code-font-size: 0.78em;
+}
+
+/* ============================================================
+   Base slide — light editorial page
+   ============================================================ */
+.slidev-layout {
+  background: var(--paper);
+  color: var(--body-fg);
+  font-family: "Newsreader", Georgia, serif;
+  font-size: 1.02rem;
+  line-height: 1.62;
+  padding: 3.2rem 3.6rem;
+}
+
+.slidev-layout h1,
+.slidev-layout h2,
+.slidev-layout h3,
+.slidev-layout h4 {
+  font-family: "Space Grotesk", "Newsreader", sans-serif;
+  color: var(--ink);
+  letter-spacing: -0.015em;
+  font-weight: 600;
+}
+
+.slidev-layout h1 { font-weight: 700; letter-spacing: -0.028em; }
+
+/* h2 = the book's signature hairline-ruled section head */
+.slidev-layout h2 {
+  font-size: 1.9rem;
+  line-height: 1.12;
+  padding-bottom: 0.4rem;
+  margin-bottom: 1.1rem;
+  border-bottom: 1px solid var(--ink);
+  position: relative;
+}
+/* tiny accent tick at the start of every ruled heading */
+.slidev-layout h2::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: -1px;
+  width: 3.2rem; height: 3px;
+  background: var(--accent);
+}
+
+.slidev-layout h3 { font-size: 1.25rem; margin-top: 1.4em; }
+
+/* Standfirst: the first paragraph after a heading reads larger & lighter */
+.slidev-layout h2 + p,
+.slidev-layout h1 + p {
+  font-size: 1.18rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.slidev-layout strong { color: var(--ink); font-weight: 600; }
+.slidev-layout em { color: var(--accent); font-style: italic; }
+
+/* ---------- Lists with accent markers ---------- */
+.slidev-layout ul { list-style: none; padding-left: 0; }
+.slidev-layout ul > li {
+  position: relative;
+  padding-left: 1.4rem;
+  margin: 0.55rem 0;
+  max-width: 46rem;
+}
+.slidev-layout ul > li::before {
+  content: "";
+  position: absolute;
+  left: 0.05rem; top: 0.72em;
+  width: 0.5rem; height: 0.5rem;
+  background: var(--accent);
+  transform: rotate(45deg);   /* small diamond */
+}
+.slidev-layout ol { padding-left: 1.2rem; }
+.slidev-layout ol > li { margin: 0.55rem 0; }
+.slidev-layout ol > li::marker { color: var(--accent); font-family: "Space Grotesk"; font-weight: 600; }
+
+/* ---------- Links ---------- */
+.slidev-layout a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(35,71,126,0.35);
+}
+
+/* ---------- Code ---------- */
+.slidev-layout pre,
+.slidev-layout .slidev-code {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  border-radius: 6px;
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--accent);
+  background: #f6f7f9 !important;
+  box-shadow: 0 1px 3px rgba(22,35,63,0.05);
+}
+.slidev-layout :not(pre) > code {
+  font-family: "IBM Plex Mono", monospace;
+  background: #eef1f6;
+  color: var(--ink);
+  border-radius: 3px;
+  padding: 0.08em 0.34em;
+  font-size: 0.86em;
+}
+
+/* ---------- Blockquote (editorial) ---------- */
+.slidev-layout blockquote {
+  border-left: 3px solid var(--accent);
+  padding: 0.2rem 0 0.2rem 1.3rem;
+  font-family: "Newsreader", serif;
+  font-style: italic;
+  color: var(--ink);
+}
+
+/* ============================================================
+   Reusable helper classes (used from slides.md)
+   ============================================================ */
+
+/* uppercase kicker — the book's chapter-kicker */
+.kicker {
+  font-family: "Space Grotesk", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+.kicker--light { color: #9db4dd; }
+
+/* callout box (mirrors the book's 'critical' admonition) */
+.callout {
+  border-left: 3px solid var(--c-critical);
+  background: color-mix(in srgb, var(--c-critical) 7%, transparent);
+  padding: 0.7rem 1rem;
+  border-radius: 3px;
+  font-size: 0.92rem;
+}
+.callout--practice { border-left-color: var(--c-practice); background: color-mix(in srgb, var(--c-practice) 8%, transparent); }
+.callout--origins  { border-left-color: var(--c-origins);  background: color-mix(in srgb, var(--c-origins) 8%, transparent); }
+.callout--further  { border-left-color: var(--c-further);  background: color-mix(in srgb, var(--c-further) 8%, transparent); }
+
+/* thin credit / source line */
+.source {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
+  color: var(--muted);
+}
+
+/* mono "pipeline" band used on the workflow slide */
+.pipeline {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 1.7rem;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  padding: 1.1rem 0;
+  text-align: center;
+}
+.pipeline b { color: var(--accent); }
+
+/* ============================================================
+   FULL-BLEED INK SLIDES  (class: cover  /  class: dark)
+   ============================================================ */
+.slidev-layout.cover,
+.slidev-layout.dark {
+  background:
+    radial-gradient(120% 90% at 82% 8%, rgba(47,92,158,0.30) 0%, transparent 55%),
+    linear-gradient(150deg, var(--ink) 0%, var(--ink-2) 100%);
+  color: #eef1f6;
+}
+.slidev-layout.cover h1,
+.slidev-layout.cover h2,
+.slidev-layout.dark  h1,
+.slidev-layout.dark  h2 { color: #ffffff; border-bottom: none; }
+.slidev-layout.cover h2::after,
+.slidev-layout.dark  h2::after { display: none; }
+.slidev-layout.dark  strong { color: #ffffff; }
+.slidev-layout.dark  em { color: #9db4dd; }
+.slidev-layout.dark ul > li::before { background: #6f93c8; }
+
+/* thin top rule across the ink slides — editorial masthead feel */
+.slidev-layout.cover::before,
+.slidev-layout.dark::before {
+  content: "";
+  position: absolute;
+  top: 2.4rem; left: 3.6rem; right: 3.6rem;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent-2), transparent 70%);
+}
+
+/* Cover title, oversized */
+.slidev-layout.cover h1 {
+  font-size: 3.4rem;
+  line-height: 1.02;
+  margin: 0.2rem 0 0.4rem;
+}
+.slidev-layout.cover h2 {
+  font-family: "Newsreader", serif;
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.7rem;
+  color: #b9c8e2;
+  padding: 0; margin: 0;
+}
+
+/* Section divider slides: giant statement, centred */
+.slidev-layout.section h1 {
+  font-size: 3rem;
+  line-height: 1.06;
+  max-width: 20ch;
+}
+
+/* ---------- Cover foot / masthead line ---------- */
+.cover-foot {
+  position: absolute;
+  left: 3.6rem; right: 3.6rem; bottom: 2.4rem;
+  display: flex; justify-content: space-between; align-items: baseline;
+  border-top: 1px solid rgba(255,255,255,0.18);
+  padding-top: 0.7rem;
+}
+
+/* ---------- Slide number / footer polish ---------- */
+.slidev-page { }

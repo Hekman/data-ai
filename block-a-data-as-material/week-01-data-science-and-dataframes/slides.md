@@ -2,22 +2,29 @@
 theme: default
 title: Data Science & Dataframes as Design Material
 info: Block A · Week 1 · Master Data-driven Design
-class: text-center
 highlighter: shiki
 transition: slide-left
 mdc: true
 colorSchema: light
+fonts:
+  sans: Space Grotesk
+  serif: Newsreader
+  mono: IBM Plex Mono
+  weights: '400,500,600,700'
+class: cover
 ---
 
-# Data Science & Dataframes
-## as Design Material
+<div class="kicker kicker--light">Block A · Week 1 · Master Data-driven Design</div>
 
-<div class="text-sm opacity-60 tracking-widest mt-4">
-BLOCK A · WEEK 1 · MASTER DATA-DRIVEN DESIGN
-</div>
+# Data Science<br>& Dataframes
 
-<div class="abs-bl m-6 text-sm opacity-70">
-<span class="italic">This week: what is data science, and how do I shape a table to answer a question?</span>
+## as design material
+
+<div class="cover-foot">
+  <span class="kicker kicker--light">Data as Material</span>
+  <span class="text-sm italic opacity-80" style="max-width:30ch; text-align:right;">
+    What is data science, and how do I shape a table to answer a question?
+  </span>
 </div>
 
 <!--
@@ -25,24 +32,29 @@ Presenter note: this is the fast week. Front-load the toolkit so every later wee
 -->
 
 ---
-layout: quote
+layout: default
+class: dark
 ---
 
-## The block question
+<div class="kicker kicker--light mb-6">The block question</div>
 
-> What does this data actually let me know,<br>and what stories can I tell?
+<blockquote class="!border-l-0 !pl-0" style="font-size:2.1rem; line-height:1.25; color:#fff;">
+What does this data actually let me know,<br>and what stories can I tell?
+</blockquote>
 
-This block treats **data as a designer's material** — something you can source, question, shape, and compose with. Not just consume.
+<div class="mt-8 text-lg" style="max-width:44rem; color:#b9c8e2;">
+This block treats <strong>data as a designer's material</strong> — something you can source, question, shape, and compose with. Not just consume.
+</div>
 
 ---
 layout: default
 ---
 
-## Why this matters for designers
+<div class="kicker mb-3">Why this matters</div>
 
-Most people consume dashboards as *finished objects*.
+## Designers start one step earlier
 
-Your job starts one step earlier — at the **raw material**.
+Most people consume dashboards as *finished objects*. Your job starts at the **raw material**.
 
 <v-clicks>
 
@@ -52,46 +64,59 @@ Your job starts one step earlier — at the **raw material**.
 
 </v-clicks>
 
-<div v-click class="mt-6 px-4 py-2 border-l-4 border-red-500 bg-red-50 text-sm">
-Aggregation is where the interesting decisions hide: <b>what you choose to group by determines the story the data can tell.</b>
+<div v-click class="callout mt-7">
+Aggregation is where the interesting decisions hide: <strong>what you choose to group by determines the story the data can tell.</strong>
 </div>
 
 ---
-layout: center
+layout: default
 class: text-center
 ---
 
+<div class="kicker mb-3">The shape of the work</div>
+
 ## The data science workflow
 
-<div class="text-2xl font-mono mt-6 tracking-wide">
-source → clean → explore → analyse → communicate
+<div class="pipeline mt-8">
+source&nbsp; → &nbsp;clean&nbsp; → &nbsp;explore&nbsp; → &nbsp;analyse&nbsp; → &nbsp;<b>communicate</b>
 </div>
 
-<div class="mt-6 opacity-70">
-Iterative, not linear. Design judgment lives in the <b>choices</b> at each step — not in the code.
+<div class="mt-7 text-lg" style="color:var(--muted); max-width:46rem; margin-inline:auto;">
+Iterative, not linear. Design judgment lives in the <strong>choices</strong> at each step — not in the code.
 </div>
 
 ---
-layout: section
+layout: default
+class: section
 ---
 
-# Data is *made*, not found
+<div class="kicker kicker--light mb-6">01 · A stance on data</div>
+
+# Data is *made*,<br>not found
 
 ---
+layout: default
+---
 
-## Datafication
+<div class="kicker mb-3">Datafication</div>
+
+## What counts as worth counting?
 
 Turning life into data is never a neutral recording. It's a choice about *what counts* as worth measuring, in what units, by whom.
 
 Before a single row exists, the world has already been **translated** into something countable — and some things resist translation, or get left out.
 
-<div class="mt-8 text-sm opacity-60">
-Reading — Beaulieu &amp; Leonelli (2021), "Data in Society"
+<div class="source mt-10">
+Reading — Beaulieu &amp; Leonelli (2021), “Data in Society”
 </div>
 
 ---
+layout: default
+---
 
-## Split–apply–combine
+<div class="kicker mb-3">The central move</div>
+
+## Split · apply · combine
 
 `groupby` splits the table into groups, applies a function, and combines the result.
 
@@ -100,26 +125,32 @@ Reading — Beaulieu &amp; Leonelli (2021), "Data in Society"
 df.groupby("neighbourhood")["rent"].mean()
 ```
 
-<div v-click class="mt-4">
-Choosing the <b>grouping key</b> is the central design move.
+<div v-click class="callout callout--further mt-6">
+Choosing the <strong>grouping key</strong> is the central design move — it decides the unit your story is told in.
 </div>
 
 ---
-layout: center
-class: text-center
+layout: default
+class: dark text-center
 ---
+
+<div class="kicker kicker--light mb-3">The risk of the summary</div>
 
 ## Every summary hides something
 
-Aggregation throws information away — that's the point, *and* the risk.
+<div class="text-lg mt-2" style="color:#b9c8e2;">Aggregation throws information away — that's the point, <em>and</em> the risk.</div>
 
-<div class="text-2xl italic mt-8 text-red-600">
+<div class="mt-10" style="font-family:'Newsreader',serif; font-style:italic; font-size:2rem; color:#e79b95;">
 What did this summary make invisible?
 </div>
 
-<div class="mt-4 opacity-70">An average can quietly mask a bimodal split.</div>
+<div class="mt-5" style="color:#9db4dd;">An average can quietly mask a bimodal split.</div>
 
 ---
+layout: default
+---
+
+<div class="kicker mb-3">Learning outcomes</div>
 
 ## By the end of this week you can…
 
@@ -134,22 +165,28 @@ What did this summary make invisible?
 
 </v-clicks>
 
-<div class="mt-6 text-sm opacity-60">Toward PLO 5 — Advanced Beginner</div>
+<div class="source mt-7">Toward PLO 5 — Advanced Beginner</div>
 
 ---
 layout: two-cols
-layoutClass: gap-8
+layoutClass: gap-10
 ---
+
+<div class="kicker mb-3">The week</div>
 
 ## This week
 
-**Before class (~4–5h)**
-DataCamp: *Intro to Data Science in Python* + *Data Manipulation with pandas* (Ch. 1–2). Heaviest prep week of the block.
+<div class="mb-4">
+<strong>Before class (~4–5h)</strong><br>
+DataCamp: <em>Intro to Data Science in Python</em> + <em>Data Manipulation with pandas</em> (Ch. 1–2). Heaviest prep week of the block.
+</div>
 
-**In class**
-`W1_data_science_and_dataframes.ipynb` — environment check, first DataFrame, three escalating questions on a real municipal dataset, then *find an aggregation that misleads*.
+<strong>In class</strong><br>
+<code>W1_data_science_and_dataframes.ipynb</code> — environment check, first DataFrame, three escalating questions on a real municipal dataset, then <em>find an aggregation that misleads</em>.
 
 ::right::
+
+<div class="kicker mb-3">Take it home</div>
 
 ## After class
 
@@ -166,12 +203,14 @@ Pick an open dataset. Write a five-line **first reading**:
 </v-clicks>
 
 ---
-layout: center
-class: text-center
+layout: default
+class: cover text-center
 ---
 
-# Next: Cleaning & Shaping Data
+<div class="kicker kicker--light mb-4">Up next · Week 2</div>
 
-<div class="mt-4 opacity-70 text-sm">
+# Cleaning & Shaping Data
+
+<div class="mt-6 text-lg" style="color:#b9c8e2; max-width:40rem; margin-inline:auto;">
 Start a running shortlist of datasets and audiences — you commit by Week 3.
 </div>
